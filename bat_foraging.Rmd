@@ -46,6 +46,8 @@ library(ggplot2)
 library(flexplot)
 library(easystats)
 library(arm)
+#install.packages("gt")
+library(gt)
 
 #install.packages("remotes")
 remotes::install_github("dustinfife/flexplot")
@@ -92,6 +94,14 @@ flexplot::visualize(ad2, plot="model", sample=19) +
 <p style="color: darkolivegreen; font-family: serif; font-size: 20px;">
 This summary concluded that the hardwood vegetation cover is the only vegetation cover that significantly effects foraging calls (p < 0.05). Now that we have compared both random slope and random intercepts with random slopes and same intercepts, lets complete a comparative analysis.
 </p>
+
+<br><br>
+```{r compare parameters}
+
+results <- parameters::compare_parameters(ad1, ad2, select = "{estimate}<br>({se})|{p}")
+print_html(results)
+```
+
 
 <br><br>
 ```{r Comparing performance, echo=TRUE, warning=FALSE, message=FALSE}
